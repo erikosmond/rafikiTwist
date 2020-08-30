@@ -8,6 +8,17 @@ RSpec.shared_context 'recipes', shared_context: :metadata do
   let(:recipe2_name) { 'Chesnut Soup' }
   let(:recipe2_description) { 'Winter Warmer' }
   let(:recipe2_instructions) { 'Stir the soup' }
+  let(:recipe_ing1) { create(:recipe, name: 'Toasted Almond Milk') }
+  let(:recipe_tag1) { create(:tag, recipe_id: recipe_ing1, name: 'Toasted Almond Milk') }
+  let(:recipe_ing2) { create(:recipe, name: 'Orgeat') }
+  let(:recipe_tag2) { create(:tag, recipe_id: recipe_ing2, name: 'Orgeat') }
+  let(:recipe3) { create(:recipe, name: 'The Monroe') }
+  let(:almonds) { create(:tag, name: 'Almonds') }
+  let(:almond_selection) { create(:tag_selection, tag: almonds, recipe: recipe_ing1) }
+  let(:almond_milk_selection) do
+    create(:tag_selection, tag: recipe_tag1, recipe: recipe_ing2)
+  end
+  let!(:orgeat_selection) { create(:tag_selection, tag: recipe_tag2, recipe: recipe3) }
   let(:ingredient1_name) { 'salt' }
   let(:ingredient1_verbena) { 'Lemon Verbena' }
   let(:ingredient2_name) { 'pepper' }
@@ -121,6 +132,42 @@ RSpec.shared_context 'recipes', shared_context: :metadata do
 
   let!(:access4a) do
     create(:access, user: user, accessible: lemon_verbena, status: 'PUBLIC')
+  end
+
+  let!(:recipe_ing1_access) do
+    create(:access, user: user, accessible: recipe_ing1, status: 'PUBLIC')
+  end
+
+  let!(:recipe_tag1_access) do
+    create(:access, user: user, accessible: recipe_tag1, status: 'PUBLIC')
+  end
+
+  let!(:recipe_ing2_access) do
+    create(:access, user: user, accessible: recipe_ing2, status: 'PUBLIC')
+  end
+
+  let!(:recipe_tag2_access) do
+    create(:access, user: user, accessible: recipe_tag2, status: 'PUBLIC')
+  end
+
+  let!(:recipe3_access) do
+    create(:access, user: user, accessible: recipe3, status: 'PUBLIC')
+  end
+
+  let!(:almonds_access) do
+    create(:access, user: user, accessible: almonds, status: 'PUBLIC')
+  end
+
+  let!(:almond_selection_access) do
+    create(:access, user: user, accessible: almond_selection, status: 'PUBLIC')
+  end
+
+  let!(:almond_milk_selection_access) do
+    create(:access, user: user, accessible: almond_milk_selection, status: 'PUBLIC')
+  end
+
+  let!(:orgeat_selection_access) do
+    create(:access, user: user, accessible: orgeat_selection, status: 'PUBLIC')
   end
 
   let!(:access2) { create(:access, user: user, accessible: soup, status: 'PUBLIC') }

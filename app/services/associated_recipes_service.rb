@@ -55,4 +55,8 @@ module AssociatedRecipesService
       'parent_tags_tags_2.id AS grandparent_tag_id'
     ]
   end
+
+  def tag_selections_attrs
+    ['tag_selections.id', 'tag_selections.body']
+  end
 end

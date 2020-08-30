@@ -27,8 +27,4 @@ class RecipeDetail
         :access
       ]
     end
-
-    def tag_selections_attrs
-      ['tag_selections.id', 'tag_selections.body']
-    end
 end

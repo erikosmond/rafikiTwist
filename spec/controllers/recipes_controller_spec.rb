@@ -122,6 +122,22 @@ describe Api::RecipesController, type: :controller do
     end
   end
 
+  describe 'GET - index (nested recipes)' do
+    before do
+      sign_in user
+      get :index,
+          params: { tag_id: almonds.id },
+          format: 'json'
+    end
+
+    it 'returns recipes with nested ingredients' do
+      body = JSON.parse(response.body)
+      binding.pry
+      # TODO: add tests for nested recipe ingredients
+      expect(body['recipes'].size).to eq(3)
+    end
+  end
+
   describe 'GET - index (modification)' do
     let(:tag_subject) do
       create(:tag, name: 'Chamomile', tag_type: tag_type_modifiction_type)
